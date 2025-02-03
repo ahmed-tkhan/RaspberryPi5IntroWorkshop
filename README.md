@@ -24,16 +24,19 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
 
 ### Example 1: Turning On an LED
 1. Build the circuit:
-   - Connect the positive lead of the LED to pin 11 via a 1kΩ resistor.
+   - Connect the positive lead of the LED to pin 11 via a 1kΩ resistor.
    - Connect the ground leg of the LED to a ground pin.
-2. Write the Python script:
-   ```python
-   import RPi.GPIO as GPIO
+     [Raspberry Pi GPIO Pinout](https://pinout.xyz/)
 
-   GPIO.setmode(GPIO.BOARD)
-   led = 11
-   GPIO.setup(led, GPIO.OUT)
-   GPIO.output(led, True)
+2. Write the Python script `LED.py`:
+   ```python
+   from gpiozero import LED
+   from time import sleep
+   
+   led = LED(17)  # GPIO17 corresponds to physical pin 11
+   led.on()
+   sleep(1)
+   led.off()
    ```
 3. Run the script:
    ```bash
@@ -41,33 +44,86 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    ```
 
 ### Example 2: Blinking an LED
-1. Modify the script to blink the LED:
+1. Modify the script to blink the LED. Save as `blink.py`:
    ```python
-   import RPi.GPIO as GPIO
-   import time
-
-   GPIO.setmode(GPIO.BOARD)
-   led = 11
-   GPIO.setup(led, GPIO.OUT)
-
-   blinkNum = int(input('How many times do you want to blink? '))
-
-   for i in range(blinkNum):
-       GPIO.output(led, True)
-       time.sleep(1)
-       GPIO.output(led, False)
-       time.sleep(1)
-
-   GPIO.cleanup()
+   from gpiozero import LED
+   from time import sleep
+   
+   led = LED(17)  # GPIO17 corresponds to physical pin 11
+   
+   while True:
+       led.on()    # Turn the LED on
+       sleep(1)    # Wait for 1 second
+       led.off()   # Turn the LED off
+       sleep(1)    # Wait for 1 second
    ```
-2. Run the script and specify the blink count:
+2. Run the script:
    ```bash
    python3 blink.py
    ```
 
 ---
 
-## 🎵 Module 2: Audio Playback with Raspberry Pi
+## 👉 Module 2: Working with Input
+
+### Example 1: Getting Input from the Terminal
+1. Write the Python script `keyboard_input.py`:
+   ```python
+   from gpiozero import LED
+   from time import sleep
+
+   led = LED(17)  # GPIO17 corresponds to physical pin 11
+
+   # Get user input for the number of blinks
+   blink_num = int(input('How many times do you want to blink? '))
+
+   # Blink the LED as many times as specified by the user
+   for _ in range(blink_num):
+       led.on()   # Turn the LED on
+       sleep(1)   # Wait for 1 second
+       led.off()  # Turn the LED off
+       sleep(1)   # Wait for 1 second
+   ```
+2. Run the script and specify the blink count:
+   ```bash
+   python3 keyboard_input.py
+   ```
+
+### Example 2: Getting Input from Two Buttons
+1. Build the circuit:
+   - Connect one button to GPIO18 (physical pin 12) and ground.
+   - Connect the second button to GPIO23 (physical pin 16) and ground.
+
+2. Write the Python script `button_input.py`:
+   ```python
+   from gpiozero import Button
+   from time import sleep
+   
+   # Define buttons using Broadcom (BCM) numbering
+   start_button = Button(18, pull_up=True)  # GPIO18 corresponds to physical pin 12
+   stop_button = Button(23, pull_up=True)   # GPIO23 corresponds to physical pin 16
+   
+   end = False
+   
+   while not end:
+       if start_button.is_pressed:
+           print('Start was pressed')
+           sleep(0.5)
+       if stop_button.is_pressed:
+           print('Stop was pressed')
+           sleep(0.5)
+       if start_button.is_pressed and stop_button.is_pressed:
+           print('Make up your mind!')
+           end = True
+   ```
+3. Run the script:
+   ```bash
+   python3 button_input.py
+   ```
+
+---
+
+## 🎵 Module 3: Audio Playback with Raspberry Pi
 
 ### Setup Audio
 1. Install required packages:
@@ -98,41 +154,6 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    ```
 
 ---
-
-## 🧪 Module 3: Analog-to-Digital Conversion (ADC)
-
-### Using Arduino for ADC
-1. Connect an Arduino to the Raspberry Pi via USB.
-2. Install the necessary Python library:
-   ```bash
-   sudo apt-get install python-serial
-   ```
-3. Upload the following sketch to your Arduino:
-   ```cpp
-   int sensor = A0;
-
-   void setup() {
-       pinMode(sensor, INPUT);
-       Serial.begin(9600);
-   }
-
-   void loop() {
-       Serial.println(analogRead(sensor));
-       delay(200);
-   }
-   ```
-4. Write a Python script to read data from the Arduino:
-   ```python
-   import serial
-
-   arduinoData = serial.Serial('/dev/ttyACM0', 9600)
-
-   while True:
-       if arduinoData.inWaiting() > 0:
-           data = arduinoData.readline()
-           print(int(data.strip()))
-   ```
-
 ---
 
 ## 🔧 Additional Commands
@@ -158,8 +179,8 @@ vcgencmd measure_temp
 
 - [Raspberry Pi Documentation](https://www.raspberrypi.com/documentation/)
 - [Raspberry Pi GPIO Pinout](https://pinout.xyz/)
-- [Luma LED Matrix Library](https://github.com/rm-hull/luma.led_matrix)
 
 ---
 
 Feel free to copy and paste the commands and code snippets above into your terminal or editor to follow along. Happy tinkering with Raspberry Pi 5! 🤖
+
