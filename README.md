@@ -27,6 +27,7 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    - Connect the positive lead of the LED to pin 11 via a 1kΩ resistor.
    - Connect the ground leg of the LED to a ground pin.
      [Raspberry Pi GPIO Pinout](https://pinout.xyz/)
+   - [1K colour code] (https://sjaeng.wordpress.com/wp-content/uploads/2010/10/resistor-color-codes1.jpg?w=584)
 
 2. Write the Python script `LED.py`:
    ```python
