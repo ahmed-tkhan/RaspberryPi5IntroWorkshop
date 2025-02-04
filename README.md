@@ -17,6 +17,8 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
 3. Connect the monitor, keyboard, and mouse to the Raspberry Pi.
 4. Power on the Raspberry Pi by connecting the power supply.
 5. Follow the on-screen instructions to complete the initial setup.
+6. We will be using Thonny IDE, (Click on the top left icon representing a raspberry > Programming > Thonny Python IDE)
+![Open ThonnyIDE](thonny_ide_start.png)
 
 ---
 
