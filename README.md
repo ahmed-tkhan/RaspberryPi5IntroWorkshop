@@ -131,15 +131,10 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    ```bash
    sudo apt-get update
    sudo apt-get install alsa-utils mpg123
-   sudo apt-get install festival
-
    ```
-2. Configure audio output to the headphone jack:
-   ```bash
-   sudo raspi-config
-   ```
-   - Go to "Advanced Options > Audio > Force 3.5mm Jack".
+2. download MYSTERY.MP3
 
+   
 ### Play an MP3 File
 1. Create a Python script to play audio:
    ```python
@@ -151,9 +146,6 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    
    # Construct the command for playing the song
    song_command = f'mpg123 -q {song_file_name} &'
-   
-   # Pass a command to the operating system to announce the song name using Festival
-   os.system(f"echo 'playing song {song_file_name}' | festival --tts")
    
    # Print files in the current directory (optional)
    print(os.system("ls"))
