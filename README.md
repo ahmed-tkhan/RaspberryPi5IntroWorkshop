@@ -107,15 +107,15 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    end = False
    
    while not end:
+      if start_button.is_pressed and stop_button.is_pressed:
+           print('Make up your mind!')
+           end = True
        if start_button.is_pressed:
            print('Start was pressed')
            sleep(0.5)
        if stop_button.is_pressed:
            print('Stop was pressed')
            sleep(0.5)
-       if start_button.is_pressed and stop_button.is_pressed:
-           print('Make up your mind!')
-           end = True
    ```
 3. Run the script:
    ```bash
@@ -147,7 +147,7 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    from time import sleep
    
    # Song filename
-   song_file_name = 'surprise.MP3'
+   song_file_name = 'MYSTERY.MP3'
    
    # Construct the command for playing the song
    song_command = f'mpg123 -q {song_file_name} &'
