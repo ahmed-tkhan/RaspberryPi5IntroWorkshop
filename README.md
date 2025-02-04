@@ -36,7 +36,7 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    
    led = LED(17)  # GPIO17 corresponds to physical pin 11
    led.on()
-   sleep(1)
+   sleep(10)
    led.off()
    ```
 3. Run the script:
