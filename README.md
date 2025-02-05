@@ -97,6 +97,7 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
 1. Build the circuit:
    - Connect one button to GPIO18 (physical pin 12) and ground.
    - Connect the second button to GPIO23 (physical pin 16) and ground.
+![Connect Buttons Circuit](Buttons.png)
 
 2. Write the Python script `button_input.py`:
    ```python
