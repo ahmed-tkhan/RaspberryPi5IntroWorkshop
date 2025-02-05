@@ -136,7 +136,7 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    sudo apt-get update
    sudo apt-get install alsa-utils mpg123
    ```
-2. download MYSTERY.MP3
+2. download Mystery_Song.mp3
 
    
 ### Play an MP3 File
@@ -146,7 +146,7 @@ Welcome to this **RaspberryPi5 Introduction Workshop**! This workshop is designe
    from time import sleep
    
    # Song filename
-   song_file_name = 'MYSTERY.MP3'
+   song_file_name = 'Mystery_Song.mp3'
    
    # Construct the command for playing the song
    song_command = f'mpg123 -q {song_file_name} &'
